@@ -15,3 +15,12 @@ versions of OS X.
 The original Objective-C version of `menubar-toggle`, from which the
 current Swift one derives, was based in large part on Sindre Sorhus's
 [dark-mode](https://github.com/sindresorhus/dark-mode).
+
+
+## Compilation
+
+```bash
+make # compiles binary
+make install # installs to $HOME/bin/menubar-toggle
+make alfred-workflow # builds Alfred Workflow
+```

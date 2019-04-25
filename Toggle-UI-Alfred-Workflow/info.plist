@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.kizmeta.toggleMacOSUI</string>
+	<key>category</key>
+	<string>Lodestone</string>
+	<key>connections</key>
+	<dict>
+		<key>264BE505-AE26-4020-A7A7-82F2B4AA6572</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>42934666-335B-4C0D-B5A0-CD55722008D8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>411BC970-3888-4F27-B615-3163B9BFF6E1</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>42934666-335B-4C0D-B5A0-CD55722008D8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>42934666-335B-4C0D-B5A0-CD55722008D8</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AD94BB30-2593-46D1-A2C0-D70814D0CED8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>@lodestone</string>
+	<key>description</key>
+	<string>Toggles macOS Menubar and Dock auto-hiding</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>_ Toggle macOS UI</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>111</integer>
+				<key>hotmod</key>
+				<integer>8388608</integer>
+				<key>hotstring</key>
+				<string>F12</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>411BC970-3888-4F27-B615-3163B9BFF6E1</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>#############################################
+# Toggle Menubar
+# toggle the visibility state of the menubar
+`./menubar-toggle`
+
+
+#############################################
+# Toggle Dock
+# toggle the visibility state of the Dock
+
+dock_visibility = `defaults read com.apple.dock autohide`.strip
+
+new_visibility_state = "true"
+new_visibility_state = "false" if dock_visibility == '1'
+
+# Toggle Dock
+`defaults write com.apple.dock autohide -bool #{new_visibility_state}`
+
+# Restart Dock to take effect
+`killall Dock`</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>42934666-335B-4C0D-B5A0-CD55722008D8</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string></string>
+				<key>title</key>
+				<string>Interface Visibility Toggled</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>AD94BB30-2593-46D1-A2C0-D70814D0CED8</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>toggleui</string>
+				<key>subtext</key>
+				<string>Toggle the auto-hiding of the Menubar and Dock</string>
+				<key>text</key>
+				<string>Toggle UI</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>264BE505-AE26-4020-A7A7-82F2B4AA6572</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>264BE505-AE26-4020-A7A7-82F2B4AA6572</key>
+		<dict>
+			<key>xpos</key>
+			<integer>60</integer>
+			<key>ypos</key>
+			<integer>270</integer>
+		</dict>
+		<key>411BC970-3888-4F27-B615-3163B9BFF6E1</key>
+		<dict>
+			<key>xpos</key>
+			<integer>50</integer>
+			<key>ypos</key>
+			<integer>80</integer>
+		</dict>
+		<key>42934666-335B-4C0D-B5A0-CD55722008D8</key>
+		<dict>
+			<key>xpos</key>
+			<integer>290</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
+		<key>AD94BB30-2593-46D1-A2C0-D70814D0CED8</key>
+		<dict>
+			<key>xpos</key>
+			<integer>470</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>https://nx.is</string>
+</dict>
+</plist>
